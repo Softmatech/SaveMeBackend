@@ -34,8 +34,6 @@ public class PersonController {
 
     @PutMapping("{id}")
     public Optional<Person> updatePersonById(@PathVariable("id")UUID id, @RequestBody Person providedPerson){
-//        Optional<Person> person = personService.getPersonById(id);
-//        Person selectedPerson = person.orElse(null);
         return Optional.ofNullable(personService.updatePerson(id, providedPerson));
     }
 

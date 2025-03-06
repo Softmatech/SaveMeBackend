@@ -1,9 +1,8 @@
 package com.softmatech.save_me.controller;
 
-import com.softmatech.save_me.entity.DocumentType;
-import com.softmatech.save_me.entity.Person;
-import com.softmatech.save_me.entity.Sexe;
+import com.softmatech.save_me.entity.*;
 import com.softmatech.save_me.repository.PersonRepository;
+import com.softmatech.save_me.service.AccountService;
 import com.softmatech.save_me.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -22,10 +21,12 @@ import java.text.SimpleDateFormat;
 public class DataPopulationController {
 
     private final PersonService personService;
+    private final AccountService accountService;
 
     @Autowired
-    public DataPopulationController(PersonService personService) {
+    public DataPopulationController(PersonService personService, AccountService accountService) {
         this.personService = personService;
+        this.accountService = accountService;
     }
 
     @PostMapping
@@ -38,9 +39,10 @@ public class DataPopulationController {
         // Create Persons
         Person person1 = new Person("Andy", "Example", Sexe.Masculin, "andy@email.com", sqlDate, "Fort-liberté", " 3, cite notre dame Fort liberte", "Haiti", "Haitien", "3428930493", DocumentType.CARTE_IDENTITICATION, "Danise Pierre", "Marie Louise", "Celibataire");
 
+        Account account= new Account(person1, "Compte Epargne", 1000.50, AccountType.EPARGNE,Currency.GOURDES);
         // Save Persons to the database
         personService.createPerson(person1);
-
+        accountService.createAccount(account);
         return  "Sample data populated from controller";
     }
 }

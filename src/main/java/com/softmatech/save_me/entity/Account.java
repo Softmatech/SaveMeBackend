@@ -33,4 +33,11 @@ private Currency currency;
 
 private LocalTime dateCreated = LocalTime.now();
 
+    public Account(Person person, String accountName, double accountBalance, AccountType accountType, Currency currency) {
+        this.person = person;
+        this.accountName = accountName;
+        this.accountBalance = accountBalance;
+        this.accountType = accountType;
+        this.currency = currency;
+    }
 }

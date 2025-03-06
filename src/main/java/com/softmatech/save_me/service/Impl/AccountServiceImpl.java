@@ -47,7 +47,7 @@ public class AccountServiceImpl implements AccountService {
             account.setId(id);  // Set the ID of the person to update
             return accountRepository.save(account);
         } else {
-            throw new RuntimeException("Person not found with ID: " + id);
+            throw new RuntimeException("Account not found with ID: " + id);
         }
     }
 
@@ -57,7 +57,7 @@ public class AccountServiceImpl implements AccountService {
         if (accountRepository.existsById(id)) {
             accountRepository.deleteById(id);
         } else {
-            throw new RuntimeException("Person not found with ID: " + id);
+            throw new RuntimeException("Account not found with ID: " + id);
         }
     }
 }

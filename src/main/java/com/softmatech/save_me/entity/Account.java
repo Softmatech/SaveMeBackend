@@ -27,10 +27,13 @@ private String accountName;
 
 private double accountBalance = 0.00;
 
+@NotNull
 private AccountType accountType;
 
+@NotNull
 private Currency currency;
 
+@NotNull
 private LocalTime dateCreated = LocalTime.now();
 
     public Account(Person person, String accountName, double accountBalance, AccountType accountType, Currency currency) {

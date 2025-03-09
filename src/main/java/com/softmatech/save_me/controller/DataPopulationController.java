@@ -5,6 +5,7 @@ import com.softmatech.save_me.repository.PersonRepository;
 import com.softmatech.save_me.service.AccountService;
 import com.softmatech.save_me.service.PersonService;
 import com.softmatech.save_me.service.TransactionService;
+import com.softmatech.save_me.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -24,12 +25,14 @@ public class DataPopulationController {
     private final PersonService personService;
     private final AccountService accountService;
     private final TransactionService transactionService;
+    private final UserService userService;
 
     @Autowired
-    public DataPopulationController(PersonService personService, AccountService accountService, TransactionService transactionService) {
+    public DataPopulationController(PersonService personService, AccountService accountService, TransactionService transactionService, UserService userService) {
         this.personService = personService;
         this.accountService = accountService;
         this.transactionService = transactionService;
+        this.userService = userService;
     }
 
     @PostMapping
@@ -45,10 +48,13 @@ public class DataPopulationController {
         Account accountOne= new Account(personOne, "Compte Epargne", 1000.50, AccountType.EPARGNE,Currency.GOURDES);
 
         Transaction transactionOne = new Transaction(accountOne, TransactionType.OUVERTURE, 1000.50, "Ouverture de compte");
+
+        User userOne = new User(personOne, "Andy@SaveMe.com", "LwilPoul", "/lwilpoul/dcos");
         // Save Persons to the database
         personService.createPerson(personOne);
         accountService.createAccount(accountOne);
         transactionService.createTransaction(transactionOne);
+        userService.createUser(userOne);
         return  "Sample data populated from controller";
     }
 }

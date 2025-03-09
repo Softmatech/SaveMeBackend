@@ -31,6 +31,7 @@ public class Transaction  extends AbstractEntity implements Cloneable{
     @NotNull
     LocalTime transactionDate = LocalTime.now();
 
+    @NotNull
     private String description;
 
     public Transaction(Account account, TransactionType transactionType, double amount, String description) {
